@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Execute your .sh script to build Docker image
-                    sh './ClimateChecker/docker-build.sh'
+                    sh '../../BackEndTest/ClimateChecker/docker-build.sh'
                 }
             }
         }
