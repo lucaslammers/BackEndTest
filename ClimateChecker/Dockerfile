@@ -16,9 +16,7 @@ RUN cd /opt \
     && mv apache-maven-${MAVEN_VERSION} maven
 # copy Maven dependencies & sources
 WORKDIR /${APP_PATH}
-RUN pwd
 COPY ./ClimateChecker .
-RUN ls -l /app/climatechecker/server
 RUN mvn clean package
 
 
