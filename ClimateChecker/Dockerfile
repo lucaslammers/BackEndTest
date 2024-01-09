@@ -18,6 +18,7 @@ RUN cd /opt \
 WORKDIR /${APP_PATH}
 RUN pwd
 COPY . .
+RUN ls -l /app/climatechecker/server
 RUN mvn clean package
 
 
