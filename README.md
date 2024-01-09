@@ -1,4 +1,4 @@
-# Opstarten van Back-end
+# Opstarten van Back-end 
 
 Om aan het SpringBoot project te werken zul je eerst de repository moeten clonen.
 Wanneer dit gelukt is kun je lokaal gaan werken in bijvoorbeeld IntelliJ.
