@@ -46,7 +46,7 @@ pipeline {
                         spec:
                           containers:
                           - name: ontdekstation-server
-                            image: ontdekstation-server:latest
+                            image: 172.16.20.110:5000/ontdekstation-server:latest
                             ports:
                             - containerPort: 8082"""
                     
