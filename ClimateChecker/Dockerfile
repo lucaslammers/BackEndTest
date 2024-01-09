@@ -17,7 +17,7 @@ RUN cd /opt \
 # copy Maven dependencies & sources
 WORKDIR /${APP_PATH}
 RUN pwd
-COPY . .
+COPY ./ClimateChecker .
 RUN ls -l /app/climatechecker/server
 RUN mvn clean package
 
