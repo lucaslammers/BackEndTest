@@ -25,7 +25,7 @@ pipeline {
         }
 
       
-        stage('Build and Deploy') {
+        stage('Deploy Pod') {
             steps {
                 script {
                     // Define the pod YAML configuration
@@ -48,8 +48,22 @@ pipeline {
                           - name: ontdekstation-server
                             image: ontdekstation-server:latest
                             ports:
-                            - containerPort: 8082
-                    ---
+                            - containerPort: 8082"""
+                    
+                    // Save the pod configuration to a file
+                    writeFile file: 'ontdekstation-server.yaml', text: podConfig
+
+                    // Use kubectl to apply the pod configuration
+                    sh('kubectl --kubeconfig=${KUBE_CONFIG} apply -f ontdekstation-server.yaml -n ${KUBE_NAMESPACE}')
+                }
+            }
+        }
+
+        stage('Deploy Service') {
+            steps {
+                script {
+                    // Define the pod YAML configuration
+                    def podConfig = """
                     apiVersion: v1
                     kind: Service
                     metadata:
@@ -64,10 +78,10 @@ pipeline {
                       type: LoadBalancer"""
                     
                     // Save the pod configuration to a file
-                    writeFile file: 'ontdekstation-server.yaml', text: podConfig
+                    writeFile file: 'ontdekstation-server-service.yaml', text: podConfig
 
                     // Use kubectl to apply the pod configuration
-                    sh('kubectl --kubeconfig=${KUBE_CONFIG} apply -f ontdekstation-server.yaml -n ${KUBE_NAMESPACE}')
+                    sh('kubectl --kubeconfig=${KUBE_CONFIG} apply -f ontdekstation-server-service.yaml -n ${KUBE_NAMESPACE}')
                 }
             }
         }
