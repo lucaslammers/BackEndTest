@@ -16,7 +16,7 @@ RUN cd /opt \
     && mv apache-maven-${MAVEN_VERSION} maven
 # copy Maven dependencies & sources
 WORKDIR /${APP_PATH}
-COPY /var/lib/jenkins/workspace/BackEndTest/ClimateChecker .
+COPY . .
 RUN mvn clean package
 
 
