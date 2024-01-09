@@ -30,38 +30,37 @@ pipeline {
                     // Define the pod YAML configuration
                     def podConfig = """
                     apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ontdekstation-server
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ontdekstation-server
-  template:
-    metadata:
-      labels:
-        app: ontdekstation-server
-    spec:
-      containers:
-      - name: ontdekstation-server
-        image: ontdekstation-server:latest
-        ports:
-        - containerPort: 8082
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ontdekstation-service
-spec:
-  selector:
-    app: ontdekstation-server
-  ports:
-    - protocol: TCP
-      port: 8082
-      targetPort: 8082
-  type: LoadBalancer
-"""
+                    kind: Deployment
+                    metadata:
+                      name: ontdekstation-server
+                    spec:
+                      replicas: 1
+                      selector:
+                        matchLabels:
+                          app: ontdekstation-server
+                      template:
+                        metadata:
+                          labels:
+                            app: ontdekstation-server
+                        spec:
+                          containers:
+                          - name: ontdekstation-server
+                            image: ontdekstation-server:latest
+                            ports:
+                            - containerPort: 8082
+                    ---
+                    apiVersion: v1
+                    kind: Service
+                    metadata:
+                      name: ontdekstation-service
+                    spec:
+                      selector:
+                        app: ontdekstation-server
+                      ports:
+                        - protocol: TCP
+                          port: 8082
+                          targetPort: 8082
+                      type: LoadBalancer"""
                     
                     // Save the pod configuration to a file
                     writeFile file: 'ontdekstation-server.yaml', text: podConfig
