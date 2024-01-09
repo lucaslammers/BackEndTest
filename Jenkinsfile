@@ -55,7 +55,7 @@ pipeline {
                     writeFile file: 'ontdekstation-server.yaml', text: podConfig
 
                     // Use kubectl to apply the pod configuration
-                    sh('kubectl --kubeconfig=${KUBE_CONFIG} apply -f ontdekstation-server.yaml -n ${KUBE_NAMESPACE}')
+                    sh('kubectl --kubeconfig=${KUBE_CONFIG} replace -f ontdekstation-server.yaml -n ${KUBE_NAMESPACE}')
                 }
             }
         }
