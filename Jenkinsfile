@@ -19,7 +19,7 @@ pipeline {
                 script {
                     // Execute your .sh script to build Docker image
                     sh 'chmod +x ./ClimateChecker/docker-build.sh'
-                    sh './ClimateChecker/docker-build.sh'
+                    sh 'sudo ./ClimateChecker/docker-build.sh'
                 }
             }
         }
